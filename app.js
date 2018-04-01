@@ -4,8 +4,13 @@ var fs = require('fs');
 
 // mkdir creates directory asynchronously
 
-fs.mkdir('Stuff',function(){
+/* fs.mkdir('Stuff',function(){
     fs.readFile('readfile.txt', 'utf8', function(err, data){
         fs.writeFile('./Stuff/writeFile.txt', data);
     });
-})
+}) */
+
+// rmdir removes directory asynchronously
+
+fs.unlink('./Stuff/writeFile.txt');
+fs.rmdir('Stuff');
