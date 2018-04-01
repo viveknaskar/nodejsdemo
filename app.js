@@ -2,9 +2,10 @@
 
 var fs = require('fs');
 
-//for creating directory syncronously, mkdirSync is used
-fs.mkdirSync('Public');
-fs.mkdirSync('Images');
+// mkdir creates directory asynchronously
 
-//for creating directory syncronously, rmdirSync is used
-fs.rmdirSync('Public');
+fs.mkdir('Stuff',function(){
+    fs.readFile('readfile.txt', 'utf8', function(err, data){
+        fs.writeFile('./Stuff/writeFile.txt', data);
+    });
+})
