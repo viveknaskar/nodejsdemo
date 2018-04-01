@@ -1,3 +1,4 @@
-var count = require('./counter');
+var stuff = require('./stuff');
 
-console.log(count(['Vivek', 'Lekshmi', 'Bruce', 'Tony']));
+console.log(stuff.count(['Vivek', 'Lekshmi', 'Bruce', 'Tony']));
+console.log("The value of pi : " + stuff.pi);
