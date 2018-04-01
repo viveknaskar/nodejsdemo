@@ -1,5 +1,10 @@
-module.exports.count = function(arr){
+var count = function(arr){
     return 'There are ' + arr.length + ' elements in the array!';
 };
 
-module.exports.pi = 3.142;
+var pi = 3.142;
+
+module.exports = {
+    count : count,
+    pi : pi
+};
