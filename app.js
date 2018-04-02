@@ -1,14 +1,23 @@
 var http = require('http');
 var fs = require('fs');
 
-// a pipe is an elegant way of reading data from stream and writing it.
-// pipes only works on readable streams
-
 var server = http.createServer(function(req, res){
     console.log('The request was made from ' + req.url);
-    res.writeHead(200, {'Content-Type':'text/html'});
-    var myReadStream = fs.createReadStream(__dirname + '/index.html', 'utf8');
-    myReadStream.pipe(res);
+    if(req.url === '/home' || req.url === '/'){
+        res.writeHead(200, {'Content-Type' : 'text/html'});
+        fs.createReadStream(__dirname + '/index.html').pipe(res);
+    } else if(req.url === '/contact'){
+        res.writeHead(200, {'Content-Type' : 'text/html'});
+        fs.createReadStream(__dirname + '/contact.html').pipe(res);
+    } else if(req.url === '/api/developers'){
+        var developers = [{name: 'vivek', age: '25', technology: 'nodejs'}, {name: 'lekshya', age: '26', technology: 'selenium'}];
+        res.writeHead(200, {'Content-Type' : 'application/json'});
+        res.end(JSON.stringify(developers));
+    } else {
+        res.writeHead(404, {'Content-Type' : 'text/html'});
+        fs.createReadStream(__dirname + '/404.html').pipe(res);
+    }
+    
 });
 
 server.listen(3000, '127.0.0.1');
